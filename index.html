@@ -51,6 +51,8 @@ button{font:inherit}
 }
 .brand{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:.02em}
 .brand img{width:38px;height:38px;object-fit:cover;border-radius:50%}
+.brand-icon{width:38px;height:38px;display:grid;place-items:center;flex:0 0 38px}
+.brand-icon svg{display:block;width:100%;height:100%}
 .brand span{font-size:17px}
 .navlinks{display:flex;gap:5px;align-items:center}
 .navlinks a{padding:8px 12px;border-radius:999px;font-size:13px;color:#496073}
@@ -147,7 +149,7 @@ footer .logo-word{font-size:54px;font-weight:900;color:#fff;letter-spacing:-.05e
 footer p{font-size:13px;margin:8px 0}
 .reveal{opacity:0;transform:translateY(25px);transition:opacity .7s ease,transform .7s ease}.reveal.visible{opacity:1;transform:none}
 @media(max-width:900px){
- .navlinks a:not(.nav-cta){display:none}.hero-grid,.grid2{grid-template-columns:1fr}.hero{padding-top:130px}.hero-card{min-height:450px}
+.hero-grid,.grid2{grid-template-columns:1fr}.hero{padding-top:130px}.hero-card{min-height:450px}
  .flow{grid-template-columns:1fr 1fr}.flow-step:after{display:none}.grid3{grid-template-columns:1fr}.segments{grid-template-columns:1fr 1fr}.team{grid-template-columns:1fr}
 }
 @media(max-width:560px){
@@ -550,9 +552,6 @@ img {
     width: min(calc(100% - 40px), 760px);
   }
 
-  .navlinks a:not(.nav-cta) {
-    display: none;
-  }
 }
 
 /* Mobile landscape / large phones */
@@ -584,6 +583,12 @@ img {
     width: 34px;
     height: 34px;
     flex: 0 0 34px;
+  }
+
+  .brand-icon {
+    width: 34px;
+    height: 34px;
+    flex-basis: 34px;
   }
 
   .brand span {
@@ -837,13 +842,82 @@ img {
   }
 }
 
+
+/* ===== Responsive navigation: keep section links visible ===== */
+.navlinks{
+  min-width:0;
+}
+.navlinks a{
+  white-space:nowrap;
+}
+@media (max-width:900px){
+  .nav{
+    gap:8px;
+  }
+  .navlinks{
+    gap:2px;
+  }
+  .navlinks a{
+    padding:7px 7px;
+    font-size:10px;
+  }
+  .nav-cta{
+    flex:0 0 auto;
+  }
+}
+@media (max-width:680px){
+  .nav{
+    display:flex;
+    flex-wrap:wrap;
+    row-gap:6px;
+  }
+  .navlinks{
+    order:3;
+    flex:1 0 100%;
+    width:100%;
+    min-width:0;
+    overflow-x:auto;
+    overflow-y:hidden;
+    justify-content:flex-start;
+    scrollbar-width:none;
+    -webkit-overflow-scrolling:touch;
+    padding:1px 2px 2px;
+  }
+  .navlinks::-webkit-scrollbar{
+    display:none;
+  }
+  .navlinks a{
+    flex:0 0 auto;
+    padding:6px 9px;
+    font-size:10px;
+  }
+}
+@media (max-width:420px){
+  .nav{
+    padding:8px 9px;
+  }
+  .navlinks a{
+    padding:6px 8px;
+    font-size:9px;
+  }
+}
 </style>
 </head>
 <body><div class="cursor-aura" id="cursorAura"></div>
 <div class="progress" id="progress"></div>
 
 <nav class="nav">
-  <a class="brand" href="#top"><img src="concept-cover.png" alt="HAHOR"><span>HAHOR / หาหอ</span></a>
+  <a class="brand" href="#top" aria-label="HAHOR / หาหอ">
+  <span class="brand-icon" aria-hidden="true">
+    <svg viewBox="0 0 48 48" role="img" focusable="false">
+      <circle cx="24" cy="24" r="21" fill="#244a69"/>
+      <circle cx="24" cy="24" r="18" fill="none" stroke="#6ac7b2" stroke-width="3"/>
+      <path d="M13.5 23.5 24 14l10.5 9.5v11H28v-7h-8v7h-6.5z" fill="white"/>
+      <path d="M21 29h6" stroke="#244a69" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span>HAHOR / หาหอ</span>
+</a>
   <div class="navlinks">
     <a href="#problem">Problem</a>
     <a href="#persona">Persona</a>
