@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>HAHOR — หาหอ | UX/UI Presentation</title>
+<link rel="icon" type="image/png" href="HaHor_Logo.png">
 <meta name="description" content="HAHOR — หาหอ: UX/UI presentation website">
 <style>
 @font-face{font-family:Seed;src:url("LINESeed-Regular.woff2") format("woff2");font-weight:400}
@@ -51,6 +52,8 @@ button{font:inherit}
 }
 .brand{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:.02em}
 .brand img{width:38px;height:38px;object-fit:cover;border-radius:50%}
+.brand-icon{width:38px;height:38px;display:grid;place-items:center;flex:0 0 38px}
+.brand-icon svg{display:block;width:100%;height:100%}
 .brand span{font-size:17px}
 .navlinks{display:flex;gap:5px;align-items:center}
 .navlinks a{padding:8px 12px;border-radius:999px;font-size:13px;color:#496073}
@@ -145,9 +148,18 @@ h2{font-size:clamp(38px,5vw,72px);line-height:1;margin:8px 0 0;color:var(--deep)
 footer{padding:80px 0 35px;background:#152236;color:#c7d3db;text-align:center}
 footer .logo-word{font-size:54px;font-weight:900;color:#fff;letter-spacing:-.05em}
 footer p{font-size:13px;margin:8px 0}
+.footer-links{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:22px;flex-wrap:wrap}
+.footer-link{display:inline-flex;align-items:center;justify-content:center;gap:10px;margin-top:22px;padding:13px 22px;border-radius:999px;background:#fff;color:#152236;text-decoration:none;font-size:14px;font-weight:800;border:1px solid rgba(255,255,255,.8);box-shadow:0 12px 30px rgba(0,0,0,.16);transition:transform .25s ease,box-shadow .25s ease,background .25s ease}
+.footer-links .footer-link{margin-top:0}
+.footer-link:hover{transform:translateY(-3px);box-shadow:0 16px 35px rgba(0,0,0,.22);background:#eafaf6}
+.footer-link svg{width:17px;height:17px;flex:0 0 17px}
+@media(max-width:560px){
+  .footer-links{gap:10px}
+  .footer-link{width:min(100%,280px);padding:12px 18px}
+}
 .reveal{opacity:0;transform:translateY(25px);transition:opacity .7s ease,transform .7s ease}.reveal.visible{opacity:1;transform:none}
 @media(max-width:900px){
- .navlinks a:not(.nav-cta){display:none}.hero-grid,.grid2{grid-template-columns:1fr}.hero{padding-top:130px}.hero-card{min-height:450px}
+.hero-grid,.grid2{grid-template-columns:1fr}.hero{padding-top:130px}.hero-card{min-height:450px}
  .flow{grid-template-columns:1fr 1fr}.flow-step:after{display:none}.grid3{grid-template-columns:1fr}.segments{grid-template-columns:1fr 1fr}.team{grid-template-columns:1fr}
 }
 @media(max-width:560px){
@@ -377,13 +389,545 @@ body:before{
   filter:blur(8px);mix-blend-mode:multiply;transition:opacity .3s;opacity:.8;
 }
 @media(max-width:800px),(pointer:coarse){.cursor-aura{display:none}}
+
+/* =========================================================
+   RESPONSIVE LAYOUT PATCH
+   - Prevents distortion/overflow on desktop, tablet and mobile
+   - Keeps image aspect ratios intact
+   - Reflows grids and typography at practical breakpoints
+   ========================================================= */
+
+html, body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+img, svg, video, canvas {
+  max-width: 100%;
+}
+
+img {
+  height: auto;
+}
+
+.container {
+  width: min(1180px, calc(100% - 48px));
+}
+
+/* Desktop / large tablet */
+.hero {
+  min-height: max(720px, 100svh);
+}
+
+.hero-grid {
+  grid-template-columns: minmax(0, 1.02fr) minmax(0, .98fr);
+  gap: clamp(28px, 5vw, 70px);
+}
+
+.hero-grid > * {
+  min-width: 0;
+}
+
+.hero-generated-wrap {
+  width: 100%;
+  min-width: 0;
+  min-height: clamp(480px, 55vw, 650px);
+}
+
+.hero-generated {
+  width: min(720px, 100%);
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+  transform-origin: center center;
+}
+
+.hero-hotspot {
+  white-space: nowrap;
+  max-width: calc(100% - 24px);
+}
+
+.grid2,
+.grid3,
+.segments,
+.team,
+.flow {
+  width: 100%;
+  min-width: 0;
+}
+
+.grid2 > *,
+.grid3 > *,
+.segments > *,
+.team > *,
+.flow > * {
+  min-width: 0;
+}
+
+.image-card img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
+.feature,
+.segment,
+.member,
+.panel,
+.stat,
+.pain-card {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.flow-step {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.flow-step b,
+.flow-step span {
+  overflow-wrap: anywhere;
+}
+
+/* Tablet */
+@media (max-width: 980px) {
+  section {
+    padding: 100px 0;
+  }
+
+  .container {
+    width: min(100% - 40px, 760px);
+  }
+
+  .hero {
+    min-height: auto;
+    padding-top: 135px;
+    padding-bottom: 80px;
+  }
+
+  .hero-grid {
+    grid-template-columns: 1fr;
+    gap: 35px;
+  }
+
+  .hero-grid > .reveal:first-child {
+    text-align: center;
+  }
+
+  .hero p {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-actions {
+    justify-content: center;
+  }
+
+  .hero-generated-wrap {
+    min-height: clamp(390px, 58vw, 520px);
+  }
+
+  .hero-generated {
+    width: min(650px, 94vw);
+  }
+
+  .hero-hotspot {
+    font-size: 10px;
+  }
+
+  .grid3 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .flow {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .flow-step:after {
+    display: none;
+  }
+
+  .segments {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .team {
+    grid-template-columns: 1fr;
+  }
+
+  .nav {
+    width: min(calc(100% - 40px), 760px);
+  }
+
+}
+
+/* Mobile landscape / large phones */
+@media (max-width: 680px) {
+  :root {
+    --radius: 22px;
+  }
+
+  section {
+    padding: 78px 0;
+  }
+
+  .container {
+    width: calc(100% - 32px);
+  }
+
+  .nav {
+    top: 8px;
+    width: calc(100% - 24px);
+    padding: 8px 10px;
+  }
+
+  .brand {
+    min-width: 0;
+    gap: 8px;
+  }
+
+  .brand img {
+    width: 34px;
+    height: 34px;
+    flex: 0 0 34px;
+  }
+
+  .brand-icon {
+    width: 34px;
+    height: 34px;
+    flex-basis: 34px;
+  }
+
+  .brand span {
+    font-size: 13px;
+    white-space: nowrap;
+  }
+
+  .nav-cta {
+    padding: 8px 11px !important;
+    font-size: 11px !important;
+  }
+
+  .hero {
+    padding-top: 112px;
+    padding-bottom: 55px;
+  }
+
+  .eyebrow {
+    max-width: 100%;
+    font-size: 10px;
+    padding: 6px 10px;
+  }
+
+  h1,
+  .hero h1 {
+    font-size: clamp(58px, 17vw, 88px);
+    line-height: .86;
+    letter-spacing: -.055em;
+    margin: 20px 0 20px;
+  }
+
+  .hero p {
+    font-size: clamp(16px, 4.5vw, 20px);
+    line-height: 1.55;
+  }
+
+  .hero-actions {
+    gap: 9px;
+  }
+
+  .btn {
+    padding: 11px 15px;
+    font-size: 13px;
+  }
+
+  .hero-generated-wrap {
+    min-height: 360px;
+    width: 100%;
+  }
+
+  .hero-generated {
+    width: min(620px, 108vw);
+    max-width: none;
+    height: auto;
+  }
+
+  .hero-generated-glow {
+    width: 80%;
+    height: 70%;
+    right: 10%;
+  }
+
+  .hero-hotspot {
+    display: none;
+  }
+
+  .section-head {
+    display: block;
+    margin-bottom: 30px;
+  }
+
+  h2 {
+    font-size: clamp(34px, 10vw, 52px);
+    line-height: 1.02;
+  }
+
+  .lead {
+    margin-top: 14px;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .grid2,
+  .grid3,
+  .segments,
+  .team,
+  .flow {
+    grid-template-columns: 1fr;
+  }
+
+  .panel {
+    padding: 18px;
+  }
+
+  .pain-card {
+    min-height: auto;
+    padding: 22px;
+  }
+
+  .feature {
+    min-height: 210px;
+    padding: 23px;
+  }
+
+  .feature .big {
+    font-size: 44px;
+  }
+
+  .segment {
+    padding: 20px;
+  }
+
+  .member {
+    padding: 20px;
+  }
+
+  .image-card {
+    border-radius: 22px;
+  }
+
+  .caption {
+    padding: 15px 16px;
+  }
+
+  .flow-step {
+    min-height: 125px;
+    padding: 15px;
+  }
+
+  .flow-step b {
+    font-size: 16px;
+  }
+
+  .flow-step span {
+    font-size: 11px;
+  }
+
+  .quote {
+    font-size: clamp(24px, 7vw, 34px);
+  }
+
+  footer {
+    padding: 60px 0 28px;
+  }
+
+  footer .logo-word {
+    font-size: clamp(42px, 14vw, 58px);
+  }
+}
+
+/* Small phones */
+@media (max-width: 420px) {
+  .container {
+    width: calc(100% - 24px);
+  }
+
+  .nav {
+    width: calc(100% - 16px);
+  }
+
+  .brand span {
+    font-size: 12px;
+  }
+
+  .nav-cta {
+    font-size: 10px !important;
+    padding: 7px 9px !important;
+  }
+
+  .hero {
+    padding-top: 105px;
+  }
+
+  .hero h1 {
+    font-size: clamp(54px, 19vw, 74px);
+  }
+
+  .hero-generated-wrap {
+    min-height: 300px;
+  }
+
+  .hero-generated {
+    width: 114vw;
+    max-width: none;
+  }
+
+  section {
+    padding: 68px 0;
+  }
+
+  .section-head {
+    margin-bottom: 24px;
+  }
+
+  .panel,
+  .feature,
+  .segment,
+  .member {
+    border-radius: 20px;
+  }
+
+  .stat {
+    padding: 20px;
+  }
+
+  .stat strong {
+    font-size: 30px;
+  }
+}
+
+/* Very small screens */
+@media (max-width: 350px) {
+  .brand span {
+    display: none;
+  }
+
+  .hero h1 {
+    font-size: 52px;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+  }
+
+  .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hero-generated-wrap {
+    min-height: 260px;
+  }
+}
+
+/* Don't let hover transforms create horizontal overflow on touch devices */
+@media (pointer: coarse) {
+  .panel:hover,
+  .feature:hover,
+  .segment:hover,
+  .member:hover {
+    transform: none;
+    box-shadow: var(--shadow);
+  }
+
+  .image-card:hover img {
+    transform: none;
+  }
+
+  .btn:hover {
+    transform: none;
+  }
+}
+
+
+/* ===== Responsive navigation: keep section links visible ===== */
+.navlinks{
+  min-width:0;
+}
+.navlinks a{
+  white-space:nowrap;
+}
+@media (max-width:900px){
+  .nav{
+    gap:8px;
+  }
+  .navlinks{
+    gap:2px;
+  }
+  .navlinks a{
+    padding:7px 7px;
+    font-size:10px;
+  }
+  .nav-cta{
+    flex:0 0 auto;
+  }
+}
+@media (max-width:680px){
+  .nav{
+    display:flex;
+    flex-wrap:wrap;
+    row-gap:6px;
+  }
+  .navlinks{
+    order:3;
+    flex:1 0 100%;
+    width:100%;
+    min-width:0;
+    overflow-x:auto;
+    overflow-y:hidden;
+    justify-content:flex-start;
+    scrollbar-width:none;
+    -webkit-overflow-scrolling:touch;
+    padding:1px 2px 2px;
+  }
+  .navlinks::-webkit-scrollbar{
+    display:none;
+  }
+  .navlinks a{
+    flex:0 0 auto;
+    padding:6px 9px;
+    font-size:10px;
+  }
+}
+@media (max-width:420px){
+  .nav{
+    padding:8px 9px;
+  }
+  .navlinks a{
+    padding:6px 8px;
+    font-size:9px;
+  }
+}
 </style>
 </head>
 <body><div class="cursor-aura" id="cursorAura"></div>
 <div class="progress" id="progress"></div>
 
 <nav class="nav">
-  <a class="brand" href="#top"><img src="concept-cover.png" alt="HAHOR"><span>HAHOR / หาหอ</span></a>
+  <a class="brand" href="#top" aria-label="HAHOR / หาหอ">
+  <span class="brand-icon" aria-hidden="true">
+    <svg viewBox="0 0 48 48" role="img" focusable="false">
+      <circle cx="24" cy="24" r="21" fill="#244a69"/>
+      <circle cx="24" cy="24" r="18" fill="none" stroke="#6ac7b2" stroke-width="3"/>
+      <path d="M13.5 23.5 24 14l10.5 9.5v11H28v-7h-8v7h-6.5z" fill="white"/>
+      <path d="M21 29h6" stroke="#244a69" stroke-width="2" stroke-linecap="round"/>
+    </svg>
+  </span>
+  <span>HAHOR / หาหอ</span>
+</a>
   <div class="navlinks">
     <a href="#problem">Problem</a>
     <a href="#persona">Persona</a>
@@ -397,7 +941,7 @@ body:before{
 <section class="hero">
   <div class="container hero-grid">
     <div class="reveal">
-      <span class="eyebrow"><i></i> UX / UI CASE STUDY • DIGITAL BUSINESS</span>
+      <span class="eyebrow"><i></i> UX / UI CASE STUDY • DIGITAL BUSINESS COMPUTER</span>
       <h1>HAHOR</h1>
       <p>หาที่พัก หาความปลอดภัย หาได้ที่ “หาหอ” — แพลตฟอร์มที่เชื่อมผู้เช่ากับเจ้าของหอพักในระบบเดียว</p>
       <div class="hero-actions">
@@ -411,7 +955,6 @@ body:before{
       <div class="hero-hotspot hotspot-one">📍 ค้นหาหอใกล้มหาวิทยาลัย</div>
       <div class="hero-hotspot hotspot-two">✓ รีวิวจากผู้พักจริง</div>
     </div>
-  </div>
   </div>
 </section>
 
@@ -539,6 +1082,22 @@ body:before{
 <footer>
   <div class="logo-word">HAHOR</div>
   <p>หาที่พัก หาความปลอดภัย หาได้ที่ หาหอ</p>
+
+  <!-- เปลี่ยน URL ตรง href ด้านล่างเป็นลิงก์ของคุณ -->
+  <div class="footer-links">
+    <a class="footer-link" href="https://drive.google.com/drive/folders/1PykXMXRVxM6DIVY3q53WsgnR6l9TPelp?usp=sharing" target="_blank" rel="noopener noreferrer" aria-label="เข้าสู่เว็บไซต์ HAHOR">
+      <span>HAHOR Google Drive</span>
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+    <a class="footer-link" href="https://www.figma.com/design/RGiyfXh7PhYAzN1hB4jQoY/HaHor-Wireframe-Gen2?node-id=0-1&t=YVGKTfDIBU7foI2x-1" target="_blank" rel="noopener noreferrer" aria-label="ดู Prototype HAHOR">
+      <span>HAHOR Prototype</span>
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+  </div>
 </footer>
 
 <script>
