@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>HAHOR — หาหอ | UX/UI Presentation</title>
+<link rel="icon" type="image/png" href="HaHor_Logo.png">
 <meta name="description" content="HAHOR — หาหอ: UX/UI presentation website">
 <style>
 @font-face{font-family:Seed;src:url("LINESeed-Regular.woff2") format("woff2");font-weight:400}
@@ -147,6 +148,15 @@ h2{font-size:clamp(38px,5vw,72px);line-height:1;margin:8px 0 0;color:var(--deep)
 footer{padding:80px 0 35px;background:#152236;color:#c7d3db;text-align:center}
 footer .logo-word{font-size:54px;font-weight:900;color:#fff;letter-spacing:-.05em}
 footer p{font-size:13px;margin:8px 0}
+.footer-links{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:22px;flex-wrap:wrap}
+.footer-link{display:inline-flex;align-items:center;justify-content:center;gap:10px;margin-top:22px;padding:13px 22px;border-radius:999px;background:#fff;color:#152236;text-decoration:none;font-size:14px;font-weight:800;border:1px solid rgba(255,255,255,.8);box-shadow:0 12px 30px rgba(0,0,0,.16);transition:transform .25s ease,box-shadow .25s ease,background .25s ease}
+.footer-links .footer-link{margin-top:0}
+.footer-link:hover{transform:translateY(-3px);box-shadow:0 16px 35px rgba(0,0,0,.22);background:#eafaf6}
+.footer-link svg{width:17px;height:17px;flex:0 0 17px}
+@media(max-width:560px){
+  .footer-links{gap:10px}
+  .footer-link{width:min(100%,280px);padding:12px 18px}
+}
 .reveal{opacity:0;transform:translateY(25px);transition:opacity .7s ease,transform .7s ease}.reveal.visible{opacity:1;transform:none}
 @media(max-width:900px){
 .hero-grid,.grid2{grid-template-columns:1fr}.hero{padding-top:130px}.hero-card{min-height:450px}
@@ -931,7 +941,7 @@ img {
 <section class="hero">
   <div class="container hero-grid">
     <div class="reveal">
-      <span class="eyebrow"><i></i> UX / UI CASE STUDY • DIGITAL BUSINESS</span>
+      <span class="eyebrow"><i></i> UX / UI CASE STUDY • DIGITAL BUSINESS COMPUTER</span>
       <h1>HAHOR</h1>
       <p>หาที่พัก หาความปลอดภัย หาได้ที่ “หาหอ” — แพลตฟอร์มที่เชื่อมผู้เช่ากับเจ้าของหอพักในระบบเดียว</p>
       <div class="hero-actions">
@@ -1072,6 +1082,22 @@ img {
 <footer>
   <div class="logo-word">HAHOR</div>
   <p>หาที่พัก หาความปลอดภัย หาได้ที่ หาหอ</p>
+
+  <!-- เปลี่ยน URL ตรง href ด้านล่างเป็นลิงก์ของคุณ -->
+  <div class="footer-links">
+    <a class="footer-link" href="https://drive.google.com/drive/folders/1PykXMXRVxM6DIVY3q53WsgnR6l9TPelp?usp=sharing" target="_blank" rel="noopener noreferrer" aria-label="เข้าสู่เว็บไซต์ HAHOR">
+      <span>HAHOR Google Drive</span>
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+    <a class="footer-link" href="https://www.figma.com/design/RGiyfXh7PhYAzN1hB4jQoY/HaHor-Wireframe-Gen2?node-id=0-1&t=YVGKTfDIBU7foI2x-1" target="_blank" rel="noopener noreferrer" aria-label="ดู Prototype HAHOR">
+      <span>HAHOR Prototype</span>
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+        <path d="M7 17 17 7M9 7h8v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+  </div>
 </footer>
 
 <script>
